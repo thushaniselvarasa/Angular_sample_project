@@ -3,19 +3,23 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CommonModule } from '@angular/common';
 import {Product} from '../Models/product';
+import { PostsService } from '../Services/posts.service';
+import { PostsComponent } from "../posts/posts.component";
 
 @Component({
   selector: 'app-sample-card',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, PostsComponent],
   templateUrl: './sample-card.component.html',
-  styleUrl: './sample-card.component.css'
+  styleUrls: ['./sample-card.component.css']
 })
 export class SampleCardComponent implements OnInit {
 
   public loginForm!:FormGroup;
   public submitted = false; 
   public product:any = [];
+  postForm!: FormGroup;
+  posts: any[] = [];
 
   constructor(private fb:FormBuilder, private productService:ProductService){
 
@@ -43,6 +47,4 @@ export class SampleCardComponent implements OnInit {
       this.submitted = true;
     }
   }
-
-  
 } 
