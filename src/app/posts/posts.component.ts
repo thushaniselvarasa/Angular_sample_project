@@ -2,20 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PostsService } from '../Services/posts.service';
+import { PostCardItemComponent } from './post-card-item/post-card-item.component';  
 
 @Component({
   selector: 'app-posts',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, PostCardItemComponent],
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css']
 })
+
 export class PostsComponent implements OnInit {
 
   postForm!: FormGroup;
   posts: any[] = [];
   newPosts: any[] = [];
-  
+
   availableTags = ['history', 'american', 'crime'];
 
   constructor(private fb: FormBuilder, private postsService: PostsService) {}
@@ -42,15 +44,21 @@ export class PostsComponent implements OnInit {
     });
   }
 
+
   onPostSubmit(): void {
     if(this.postForm.valid) {
       const postData = this.postForm.value;
       this.postsService.createPost(postData).subscribe((res: any) => {
-        this.newPosts.push(res);
+        this.posts.push(this.postForm.value );
         this.postForm.reset();
       });
 
     }
+  }
+  items=['item1','item2','item3'];
+
+  addItem(newItem: string) {
+    this.items.push(newItem);
   }
 }
 

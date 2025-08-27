@@ -42,7 +42,7 @@
 <hr>
 
 <h2>New Posts</h2>
-<div *ngFor="let post of newPosts" class="post-card">
+<div *ngFor="let post of posts" class="post-card">
   <h3>{{ post.title }}</h3>
   <p>{{ post.body }}</p>
     <p><strong>Tags:</strong> 
@@ -53,3 +53,10 @@
   <p><strong>Likes:</strong> {{ post.reactions?.likes }} | 
      <strong>Dislikes:</strong> {{ post.reactions?.dislikes }}</p>
 </div>
+
+<app-post-card-item [posts]="posts"></app-post-card-item>
+<app-post-card-item (newItemEvent)="addItem($event)"></app-post-card-item>
+<ul>
+  <li *ngFor="let item of items">{{item}}</li>
+</ul>
+
