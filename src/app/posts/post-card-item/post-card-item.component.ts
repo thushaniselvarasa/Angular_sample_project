@@ -1,4 +1,4 @@
-import { Component,Input,Output,EventEmitter } from '@angular/core';
+import { Component,Input,Output,EventEmitter, SimpleChange } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 
 @Component({
@@ -15,6 +15,9 @@ export class PostCardItemComponent {
 
   addNewItem(value:string){
     this.newItemEvent.emit(value);
+  }
+  ngOnChanges(change:SimpleChange){ 
+    console.log(change);
   }
 }
   

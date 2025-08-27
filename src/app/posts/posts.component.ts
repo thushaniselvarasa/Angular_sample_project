@@ -17,6 +17,7 @@ export class PostsComponent implements OnInit {
   postForm!: FormGroup;
   posts: any[] = [];
   newPosts: any[] = [];
+  items: string[] = [];
 
   availableTags = ['history', 'american', 'crime'];
 
@@ -55,7 +56,6 @@ export class PostsComponent implements OnInit {
 
     }
   }
-  items=['item1','item2','item3'];
 
   addItem(newItem: string) {
     this.items.push(newItem);
